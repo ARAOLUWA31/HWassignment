@@ -1,7 +1,6 @@
 #include <iostream>
 #include <fstream>
 #include <string>
-#include <cctype>
 using namespace std;
 
 // output format to use IDENTICALLY:
@@ -9,52 +8,28 @@ using namespace std;
 //program: ./filesize
 // input.3lines: 3
 // input.1line: 1
-
+//
 int main( int argc, char* argv[] )
 {
-    //stream for the files and variables for file name, line counts, bool to check for empty file case
-    ifstream testFile;
-    string fileName = "";
-    int count = 0;
-    int all_lines = 0;
-    bool empty;
-    string line = "";
+    ifstream myfile;
+    string tmp;
+    std::cout << "program: " << argv[0] << endl;
+    
+    for (int arg = 1; arg < argc; arg++){
+        int counter = 0;
+       
+        myfile.open(argv[arg]);
+        if(myfile.is_open()){
+            while(!(myfile.eof())){
+            //instead of trying to track '\n' and endl;, just use getline til you cant and count that
+            getline(myfile, tmp);
+            counter++;
+            }
+            cout << " " << argv[arg]<< ": " << counter << endl;
+            myfile.close();
+        }else{
+            cout << argv[arg] << ": " << "-1" << endl;
 
-    cout << "program: " << argv[0] << endl;
-
-    for (int arg = 1; arg < argc; ++arg){
-        empty = true;
-        fileName = argv[arg];
-        testFile.open(fileName);
-        //if the file fails to open it outputs -1 
-        if (!testFile.is_open()){
-            cout << " " << fileName + ": " << -1 << endl; 
-        } 
-        else{
-            //if file opens successfully do this
-            while(!testFile.eof()){
-                getline(testFile, line);
-                //counts total number of lines
-                all_lines++;
-                //counts number of lines that arent new lines 
-                if(line != "" and line != "\n"){
-                    count++;
-                    empty = false;
-                }
-            }
-            if (empty){
-                //prints different counts based on empty lines or not
-                cout << " " << fileName + ": " + to_string(all_lines) << endl;
-            }
-            else{
-                cout << " " << fileName + ": " + to_string(count) << endl;
-            }
-            //resets variables 
-            count = 0;
-            all_lines = 0;
-        }
-        //closes files 
-        testFile.close();
     }
-    exit(0); // this means that the program executed correctly!
+    exit(0); 
 }
