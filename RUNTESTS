@@ -1,0 +1,6 @@
+#!/bin/sh
+./filesize input.3lines
+./filesize input.1line input.3lines
+./filesize
+./filesize input.notafile input.unreadable 
+./filesize input.3lines input.1line input.notafile input.unreadable input.2linesNonewline  input.annoying\ file\ name  input.just8blanklines 
