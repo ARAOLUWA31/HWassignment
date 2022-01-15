@@ -27,12 +27,12 @@ int main( int argc, char* argv[] )
             }
             cout << " " << argv[arg]<< ": " << counter << endl;
             myfile.close();
-        }
-            else{
-            cout << argv[arg] << ": " << "-1" << endl;
+        }else{
+            cout << " " << argv[arg] << ": " << "-1" << endl;
+        
+    }
 
     }
-   
-}
-exit(0); 
+    
+    exit(0); 
 }
