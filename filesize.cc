@@ -15,7 +15,7 @@ int main( int argc, char* argv[] )
     string tmp;
     std::cout << "program: " << argv[0] << endl;
     
-    for (int arg = 1; arg < argc; arg++){
+    for (int arg = 1; arg < argc; ++arg){
         int counter = 0;
        
         myfile.open(argv[arg]);
@@ -27,7 +27,8 @@ int main( int argc, char* argv[] )
             }
             cout << " " << argv[arg]<< ": " << counter << endl;
             myfile.close();
-        }else{
+        }
+         else{
             cout << " " << argv[arg] << ": " << "-1" << endl;
         
     }
